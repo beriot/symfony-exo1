@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+<div class="container">
+        <div class="card">
+            <div class="card-body">
+            {% for solo in User %}
+
+                <h5>{{solo.Firstname}} {{solo.Lastname}}</h5>
+
+            {% endfor %}
+
+            </div>
+
+            {{form_start(UserForm)}}
+            {{form_row(UserForm.Firstname)}}
+            {{form_row(UserForm.Lastname)}}
+            {{form_row(UserForm.email)}}
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            {{ form_end(UserForm) }}
+        </div>
+        
+</div>
+
+
+
+{% endblock %}

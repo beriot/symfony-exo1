@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UsersController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% if Users == []%}
+        <p>Il n'y a aucun utilisateur</p>
+    {% endif %}
+        {% for user in Users %}
+        <div class="card">
+            <div class="card-body">
+                <a href="{{path('user', {id: user.id})}}"><h5>{{user.Firstname}} {{user.Lastname}}</h5></a>
+               <p> {{ user.tasks.count()}}</p> 
+
+            </div>
+        </div>
+        {% endfor %}
+
+        
+        {{form_start(UserForm)}}
+        {{form_row(UserForm.Firstname)}}
+        {{form_row(UserForm.Lastname)}}
+        {{form_row(UserForm.email)}}
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        {{ form_end(UserForm) }}
+</div>
+
+
+
+{% endblock %}

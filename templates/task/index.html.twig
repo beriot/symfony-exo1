@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TaskController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for task in Tasks %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{task.name}}</h5>
+                    <p class="card-text">{{task.etat}}</p>
+                    <p class="card-text">{{task.deadline | date('d/m/Y H:i:s')}}</p>
+
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container mt-5">
+        {{ form_start(taskForm) }}
+        {{form_row(taskForm.name)}}
+        {{form_row(taskForm.etat)}}
+        <select name="categorieId" id="">
+            {% for user in Users %}
+                <option value="{{ user.id }}">{{user.name}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Envoyer</button>
+        {{ form_end(taskForm) }}
+    </div>
+{% endblock %}
